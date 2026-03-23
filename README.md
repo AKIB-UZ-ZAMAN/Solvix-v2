@@ -104,6 +104,12 @@ This app uses a modified SM-2 algorithm to optimize your learning:
 
 Contributions are welcome! Feel free to submit issues and pull requests.
 
+### **Developer**  
+**Akib Uz Zaman**  
+Undergraduate Student, CSE  
+Lalon University of Science & Arts (LUSA)  
+[[LinkedIn]](https://www.linkedin.com/in/akib-uz-zaman)
+
 ## License
 
 This project is licensed under the MIT License.
