@@ -1,0 +1,321 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4361ee;
+  --color-secondary: #7c3aed;
+  --color-accent: #feca42;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+  --color-dark: #0f0f1a;
+  --color-dark-card: #1a1a2e;
+  --color-dark-border: #2a2a4a;
+  --color-dark-hover: #252545;
+  --color-text-primary: #f1f1f1;
+  --color-text-secondary: #a0a0b0;
+  --color-text-muted: #6b6b7b;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0f0f1a;
+    color: #f1f1f1;
+    min-height: 100vh;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+  
+  ::selection {
+    background: rgba(67, 97, 238, 0.4);
+    color: #ffffff;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #3a3a5a;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a4a6a;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    border-color: #3a3a5a;
+    background-color: #1e1e35;
+  }
+  
+  .card-selected {
+    border-color: #4361ee;
+    background-color: rgba(67, 97, 238, 0.1);
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .btn-primary {
+    background-color: #4361ee;
+    color: white;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+  }
+  
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+  }
+  
+  .btn-secondary {
+    background-color: #2a2a4a;
+    color: #f1f1f1;
+    border: 1px solid #3a3a5a;
+  }
+  
+  .btn-secondary:hover:not(:disabled) {
+    background-color: #3a3a5a;
+    border-color: #4a4a6a;
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: #a0a0b0;
+  }
+  
+  .btn-ghost:hover:not(:disabled) {
+    background-color: #2a2a4a;
+    color: #f1f1f1;
+  }
+  
+  .btn-accent {
+    background-color: #feca42;
+    color: #0f0f1a;
+    box-shadow: 0 4px 15px rgba(254, 202, 66, 0.3);
+  }
+  
+  .btn-accent:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(254, 202, 66, 0.4);
+  }
+  
+  .option-card {
+    padding: 1rem 1.5rem;
+    border: 2px solid #2a2a4a;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #1a1a2e;
+    color: #f1f1f1;
+  }
+  
+  .option-card:hover:not(:disabled):not(.selected):not(.correct):not(.incorrect) {
+    border-color: #4361ee;
+    background-color: rgba(67, 97, 238, 0.1);
+  }
+  
+  .option-card.selected {
+    border-color: #4361ee;
+    background-color: rgba(67, 97, 238, 0.15);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  }
+  
+  .option-card.correct {
+    border-color: #10b981;
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+  
+  .option-card.incorrect {
+    border-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+  
+  .option-card.dimmed {
+    opacity: 0.5;
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background-color: #2a2a4a;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    background-color: #feca42;
+    transition: width 0.5s ease;
+  }
+  
+  .progress-bar-fill-success {
+    background-color: #10b981;
+  }
+  
+  .progress-bar-fill-warning {
+    background-color: #f59e0b;
+  }
+  
+  .progress-bar-fill-error {
+    background-color: #ef4444;
+  }
+  
+  .timer-warning {
+    animation: pulse 1s infinite;
+    color: #ef4444;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+  
+  .animate-count-up {
+    animation: countUp 0.5s ease-out;
+  }
+  
+  .text-primary { color: #f1f1f1; }
+  .text-secondary { color: #a0a0b0; }
+  .text-muted { color: #6b6b7b; }
+  .text-accent { color: #feca42; }
+  
+  .bg-dark { background-color: #0f0f1a; }
+  .bg-card { background-color: #1a1a2e; }
+  .bg-card-hover:hover { background-color: #1e1e35; }
+  .bg-accent { background-color: #feca42; }
+  .border-subtle { border-color: #2a2a4a; }
+  .border-subtle-hover:hover { border-color: #3a3a5a; }
+  .border-accent { border-color: #feca42; }
+  
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(67, 97, 238, 0.3);
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(254, 202, 66, 0.3);
+  }
+  
+  input, textarea, select {
+    background-color: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    color: #f1f1f1;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  }
+  
+  input::placeholder {
+    color: #6b6b7b;
+  }
+}
+
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
